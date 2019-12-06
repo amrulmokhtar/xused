@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="XUsed adalah aplikasi yang dapat membantu setiap rumah atau individu mencari pendapatan tambahan menerusi penjualan bahan buangan atau sampah">
+    <link rel="alternate" href="https://app.xused.com/en/faq.html" hreflang="en-my" />
+
+    <title>XUsed | Recycle and Earn</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon/xused.ico">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+    $.src="//v2.zopim.com/?4E1WTnV8e8WozVF4kzKuBCw49Vf1zbXv";z.t=+new Date;$.
+    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
+    <script src="js/firebase-setup.js"></script>
+    <!-- React -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/logos/XUsed_Header.png" alt="XUsed">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/en/index.html" class="btn btn-success btn-xs lang">English</a>
+                    </li>
+                    <li>
+                        <a href="/my/list.html" class="btn btn-success btn-md outline">Buy Waste</a>
+                    </li>
+                    <li>
+                        <a href="/my/sell.html" class="btn btn-success btn-md">Sell Waste</a>
+                    </li>
+                </ul>-->
+                
+                <ul class="nav navbar-form navbar-right">
+                    <a href="/en/faq.html" class="btn btn-link" role="button">ENGLISH</a>
+                    <a href="/my/list.html" class="btn btn-success btn buy" role="button">BELI BAHAN BUANGAN</a>
+                    <a href="/my/sell.html" class="btn btn-success btn sell" role="button">JUAL BAHAN BUANGAN</a>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Soal Jawab Lazim
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/my/index.html">Home</a>
+                    </li>
+                    <li class="active">Soalan Lazim</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Content Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Apa itu XUsed?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                XUsed adalah aplikasi berasaskan web yang dapat membantu sesiapa yang ingin menjual bahan buangan yang mereka ada dan membantu pembeli atau pengumpul bahan buangan membeli bahan buangan tersebut atau sebagai inventori barang perniagaan mereka
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Mengapa kami perlu menggunakan XUsed?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                XUsed menyediakan pasaraya yang menyediakan pelbagai jenis bahan buangan untuk dipamerkan oleh penjual dan untuk dipilih dan dibeli oleh pembeli atau pengumpul bahan buangan. Pelbagai jenis bahan buangan ini boleh dilayari dengan mudah menggunakan komputer / komputer riba atau telefon mudahalih
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Bilakah pembeli boleh datang dan ambil bahan buangan anda?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Biasanya, pembeli akan datang apabila lokasi anda berdekatan dengan mereka atau kuantiti yang ingin dijual cukup banyak
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Bagaimana untuk menarik perhatian pembeli?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pembeli atau pengumpul bahan buangan sentiasa mencari atau memantau bahan buangan yang dipamerkan dalam XUsed. Bagi sesetengah pembeli mereka mungkin inginkan kuantiti yang besar
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Mengapa XUsed?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFive" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Dengan XUsed, anda tidak perlu untuk mengangkut bahan buangan anda ke tempat lain. Pembeli akan datang dan mengambil bahan buangan tersebut di tempat anda. Jika kuantitinya kecil pembeli mungkin meminta anda membawa sendiri bahan buangan tersebut ke tempatnya. Bagaimanapun, adalah lebih ekonomi seandainya untuk mengangkut bahan buangan dan mengemaskini kuantitinya sehingga pembeli berkomunikasi dengan anda
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Bagaimana anda tentukan harga setiap bahan buangan?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Harga setiap bahan buangan ditentukan oleh bekalan dan permintaan bahan buangan tersebut di dalam pasaran. Bahan buangan yang dipamerkan adalah komoditi yang berharga di mana kebanyakan orang mengabaikannya atau tidak mengetahui harga yang sesuai atau sepatutnya
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Bagaimana cara pembayaran dibuat?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseSeven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pada masa ini XUsed hanya memfokuskan kepada ‘Bayaran Tunai’ antara pembeli dan penjual. Pembeli akan menimbang atau menyukat bahan buangan bagi menentukan kuantitinya sebelum bersetuju untuk membeli bahan buangan tersebut pada harga yang dipersetujui kedua belah pihak
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Mengapa tiada sesiapa yang menghubungi anda atau membeli bahan buangan anda? Saya sudah menunggu seminggu</a>
+                            </h4>
+                        </div>
+                        <div id="collapseEight" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Akan ada pembeli yang akan menghubungi anda dalam tempoh yang singkat. Mungkin juga masih belum ada pembeli yang berminat untuk membeli bahan buangan yang anda ingin jual, mungkin kerana kuantitinya tidak mencukupi atau terlalu kecil. Bagaimanapun XUsed akan cuba membantu anda mendapatkan pembeli
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">Adakah XUsed mempunyai tempat simpanan atau gudang fizikal?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseNine" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pada masa ini, XUsed tidak berperanan sebagai pembeli bahan buangan. XUsed cuma mengiklankan bahan buangan, iaitu, ia sebagai sebuah pasaraya bahan buangan. Walau bagaimanapun, XUsed merancang untuk mempunyai tempat simpanan atau gudang tersendiri untuk penyimpanan bahan buangan
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Adakah saya boleh menjadi pembeli?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Ya, sesiapa sahaja boleh menjadi pembeli atau usahawan pengumpul bahan buangan
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">Siapakah pembelinya?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseEleven" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pembeli bahan buangan biasanya adalah usahawan pengumpul bahan buangan di kawasan anda
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">Apa yang pembeli buat dengan bahan buangan yang dibeli?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwelve" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pembeli akan mengitar semula bahan buangan yang dibeli atau mereka menjualnya kepada peniaga atau syarikat yang lebih besar
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThirteen">Adakah saya perlu mengangkut sendiri bahan buangan yang saya jual?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThirteen" class="panel-collapse collapse">
+                            <div class="panel-body">Tidak. Anda hanya perlu mengumpul dan menyimpan bahan buangan anda di tempat yang selamat.No. You just need to collect and keep it at a safe area. (Eg. Store)
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFourteen">Apakah jenis bekas / penyimpan bahan buangan yang saya perlukan, misalnya minyak masak terpakai?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFourteen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Bagi minyak masak terpakai, anda hanya perlu menyimpannya dan bekas yang tidak bocor (mis., botol / balang kaca atau tin minyak aluminium)
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">Adakah saya perlu menimbang bahan buangan saya?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseFifteen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Anda digalakkan untuk menimbang atau menyukat bahan buangan sebelum dimasukkan atau dikemaskini dalam XUsed. Bagaimanapun, pembeli akan menimbang atau menyukat semula bahan buangan tersebut  bagi menentukan kuantiti sebenar
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">WApakah kuantiti yang biasa dikehendaki oleh pembeli minyak masak terpakai dari rumah saya?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseSixteen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Secara puratanya, pengumpul minyak masak terpakai akan datang mengambilnya apabila kuantitinya sudah mencapai 10Kg. Bagaimanapun, sekiranya pengumpul minyak masak itu tinggal berhampiran kawasan anda, dia akan datang mengambil minyak masak terpakai bersama-sama dengan bahan buangan yang lain
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen">Apakah pendapatan tambahan secara bulanan yang dijangka dari penjualan bahan buangan?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseEighteen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Berdasarkan tinjauan XUsed, purata pendapatan bulanan daripada jualan bahan buangan adalah di sekitar RM 160 / USD 40 setiap bulan. Akan tetapi, pendapatan tambahan dari penjualan bahan buangan berubah-ubah dan ia bergantung kepada jumlah kuantiti dan bilangan jenis bahan buangan yang dijual
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen">Di samping pendapatan tambahan, apakah lagi yang saya boleh perolehi dari XUsed?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseNineteen" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pelbagai orang mempunyai pelbagai matlamat dalam hidup. Matlamat yang biasa ialah untuk mendapat pendapatan tambahan. Akan tetapi, mengumpul bahan buangan secara efisien juga dapat membantu pihak kerajaan mengurangkan kos pengendalian sisa pepejal di samping menyejahterakan alam sekitar
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwenty1">Bolehkah saya menjual bahan buangan yang tidak tersenarai dalam XUsed?
+</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwenty1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Pihak kami akan memasukkan lebih banyak jenis bahan buangan pada masa akan datang. Anda boleh mencadangkan jenis bahan buangan yang patut disenaraikan dalam XUsed dengan menghantar emel kepada <a href="mailto:hello@xused.com">hello@xused.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.panel-group -->
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+       <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="/my/about.html">Tentang Kami</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="/my/faq.html">Soalan Lazim</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="/my/contact.html">Hubungi Kami</a>
+                        </li>
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/xused/" target="_blank"><i class="fa fa-facebook fa-fw"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Xused2016" target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/xusedmy/" target="_blank"><i class="fa fa-instagram fa-fw"></i></a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">&copy; XUsed 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- main JS -->
+    <script type="text/javascript" src="main.js"></script>
+
+    <!-- Firebase -->
+    <!-- Based on their documentation -->
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script>
+
+    </script>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 3000 //changes the speed
+    })
+    </script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-83944239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+</body>
+
+</html>

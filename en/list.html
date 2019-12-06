@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="XUsed is an application that helps household or individuals to earn extra income through disposal of waste">
+    <link rel="alternate" href="https://app.xused.com/my/list.html" hreflang="ms"/>
+
+    <title>XUsed | Recycle and Earn</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../images/favicon/xused.ico">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
+
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+    $.src="//v2.zopim.com/?4E1WTnV8e8WozVF4kzKuBCw49Vf1zbXv";z.t=+new Date;$.
+    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/logos/XUsed_Header.png" alt="XUsed">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/en/index.html" class="btn btn-success btn-xs lang">English</a>
+                    </li>
+                    <li>
+                        <a href="/my/list.html" class="btn btn-success btn-md outline">Buy Waste</a>
+                    </li>
+                    <li>
+                        <a href="/my/sell.html" class="btn btn-success btn-md">Sell Waste</a>
+                    </li>
+                </ul>-->
+
+                <ul class="nav navbar-form navbar-right">
+                    <a href="/my/list.html" class="btn btn-link" role="button">MALAY</a>
+                    <a href="/en/list.html" class="btn btn-success btn buy" role="button">BUY WASTE ITEM</a>
+                    <a href="/en/sell.html" class="btn btn-success btn sell" role="button">SELL WASTE ITEM</a>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Get Item Notification For Buyer -->
+    <div id="notify" class="container">
+        <div class="well">
+            <div class="row">
+                <div id="notify_desc" class="col-md-8">
+                    <p>Interested to get latest update for your favourite waste item on XUsed? Fill up your details by clicking the I'm Interested button</p>
+                </div>
+                <div class="col-md-4">
+                    <a id="btn_notify" class="btn btn-lg btn-default btn-block" href="#" data-toggle="modal" data-target="#buyerNotificationModal" >I'm Interested!</a>
+                </div>
+                <div class="modal fade" id="buyerNotificationModal" tabindex="-1" role="dialog" aria-labelledby="buyerNotificationModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="buyerNotificationModalLabel">I want to get latest update for my waste items</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form id='notification-form'>
+                          <div class="form-group">
+                            <label for="recipient-name" class="control-label">Your Email</label>
+                            <input id="email" name="email" type="email" placeholder="Email" class="form-control input-md" required="">
+                          </div>
+                          <div class="form-group">
+                            <div class="checkbox">
+                            <div>
+                                <h5>Select waste items you want to be notify :</h5>
+                            </div>
+                                <label><input type="checkbox" value="Used Cooking Oil">Used Cooking Oil</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Cans">Cans</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Plastic">Plastics</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Paper">Books and Paper</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Glass">Glass</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Food Waste">Food Waste</label>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button form="notification-form" type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Content -->
+    <div id="notify_item" class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Buy Waste Items</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/en/index.html">Home</a>
+                    <li class="active">Type Of Waste Items</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Used Cooking Oil-->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/uco.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Used Cooking Oil</h3>
+                <h4>RM 1.00/KG</h4>
+                <p>Cooking oil can be recycled into biodiesel, but otherwise should be disposed of properly as putting it in the trash or down the drain can be dangerous</p>
+                <a class="btn btn-success" href="list_seller.html?Used Cooking Oil">View Items</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Cans -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/cans.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Cans</h3>
+                <h4>RM 0.70/KG</h4>
+                <p>Aluminum is a sustainable metal and can be recycled over and over again.Although it is on the lower end of the value spectrum for scrap metal, but aluminum cans can be and still are collected and brought to scrap yards in bulk</p>
+                <a class="btn btn-success" href="list_seller.html?Cans">View Items</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Plastic -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/plastic.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Plastics</h3>
+                <h4>RM 0.50/KG</h4>
+                <p>Nearly all types of plastics can be recycled, however the extent to which they are recycled depends upon technical, economic and logistic factors. As a valuable and finite resource, the optimum recovery route for most plastic items at the ‘end-of-life’ is to be recycled, preferably back into a product that can then be recycled again and again and so on</p>
+                <a class="btn btn-success" href="list_seller.html?Plastics">View Items</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Paper -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/paper.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Paper and Books</h3>
+                <h4>RM 0.35/KG</h4>
+                <p>In today’s economy, many businesses recycle paper because it savces them money on waste disposal costs. Recycling is also good for the planet and your local community because it helps conserve valuable resources, reduces pollution from production of new materials, and creates jobs</p>
+                <a class="btn btn-success" href="list_seller.html?Paper">View Items</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Glass-->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/glass.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Glass</h3>
+                <h4>RM 0.50/KG</h4>
+                <p>Glass bottles and jars are 100% recyclable and can be recycled endlessly without any loss in purity or quality. The container and fiberglass industries collectively purchase 3 million tons of recycled glass annually, which is remelted and repurposed for use in the production of new containers and fiberglass products.</p>
+                <a class="btn btn-warning disabled">Coming Soon</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Food -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/food.jpg" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Food Waste</h3>
+                <h4>RM 0.20/KG</h4>
+                <p>The amount of food we throw away is a waste of resources. Just think about all the energy, water and packaging used in food production, transportation and storage. This all goes to waste when we throw away perfectly good food</p>
+                <a class="btn btn-warning disabled">Coming Soon</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="/en/about.html">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="/en/faq.html">FAQ</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="/en/contact.html">Contact</a>
+                        </li>
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/xused/" target="_blank"><i class="fa fa-facebook fa-fw"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Xused2016" target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/xusedmy/" target="_blank"><i class="fa fa-instagram fa-fw"></i></a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">&copy; XUsed 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/firebase-setup.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-83944239-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+</body>
+
+</html>

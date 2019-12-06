@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="my">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="XUsed adalah aplikasi yang dapat membantu setiap rumah atau individu mencari pendapatan tambahan menerusi penjualan bahan buangan atau sampah">
+    <link rel="alternate" href="https://app.xused.com/en/list.html" hreflang="en-my" />
+
+    <title>XUsed | Recycle and Earn</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="../images/favicon/xused.ico">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
+
+    <!--Start of Zopim Live Chat Script-->
+    <script type="text/javascript">
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute("charset","utf-8");
+    $.src="//v2.zopim.com/?4E1WTnV8e8WozVF4kzKuBCw49Vf1zbXv";z.t=+new Date;$.
+    type="text/javascript";e.parentNode.insertBefore($,e)})(document,"script");
+    </script>
+    <!--End of Zopim Live Chat Script-->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="../images/logos/XUsed_Header.png" alt="XUsed">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/en/index.html" class="btn btn-success btn-xs lang">English</a>
+                    </li>
+                    <li>
+                        <a href="/my/list.html" class="btn btn-success btn-md outline">Buy Waste</a>
+                    </li>
+                    <li>
+                        <a href="/my/sell.html" class="btn btn-success btn-md">Sell Waste</a>
+                    </li>
+                </ul>-->
+
+                <ul class="nav navbar-form navbar-right">
+                    <a href="/en/list.html" class="btn btn-link" role="button">ENGLISH</a>
+                    <a href="/my/list.html" class="btn btn-success btn buy" role="button">BELI BAHAN BUANGAN</a>
+                    <a href="/my/sell.html" class="btn btn-success btn sell" role="button">JUAL BAHAN BUANGAN</a>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Get Item Notification For Buyer -->
+    <div id="notify" class="container">
+        <div class="well">
+            <div class="row">
+                <div id="notify_desc" class="col-md-8">
+                    <p>Berminat untuk mendapatkan maklumat terkini tentang bahan buangan baru di XUsed? Klik butang 'Saya Berminat' dan isikan maklumat anda</p>
+                </div>
+                <div class="col-md-4">
+                    <a id="btn_notify" class="btn btn-lg btn-default btn-block" href="#" data-toggle="modal" data-target="#buyerNotificationModal" >Saya Berminat!</a>
+                </div>
+                <div class="modal fade" id="buyerNotificationModal" tabindex="-1" role="dialog" aria-labelledby="buyerNotificationModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="buyerNotificationModalLabel">Saya berminat untuk mendapatkan maklumat terkini</h4>
+                      </div>
+                      <div class="modal-body">
+                        <form id='notification-form'>
+                          <div class="form-group">
+                            <label for="recipient-name" class="control-label">Emel anda</label>
+                            <input id="email" name="email" type="email" placeholder="Emel" class="form-control input-md" required="">
+                          </div>
+                          <div class="form-group">
+                            <div class="checkbox">
+                            <div>
+                                <h5>Sila pilih bahan buangan yang anda minat :</h5>
+                            </div>
+                                <label><input type="checkbox" value="Used Cooking Oil">Minyak Masak Terpakai</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Cans">Tin Aluminium</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Plastic">Plastik</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Paper">Kertas Dan Buku</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Glass">Kaca</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="Food Waste">Sisa Makanan</label>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                        <button form="notification-form" type="submit" class="btn btn-success">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Page Content -->
+    <div id="notify_item" class="container">
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Beli Bahan Buangan</h1>
+                <ol class="breadcrumb">
+                    <li><a href="/my/index.html">Home</a>
+                    <li class="active">Jenis Bahan Buangan</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Used Cooking Oil-->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/uco.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Minyak Masak Terpakai</h3>
+                <h4>RM 1.00/KG</h4>
+                <p>Minyak masak terpakai boleh dikitar semula menjadi biodisel, tetapi jika ia tidak dibuang dengan sempurna ke dalam tong sampah atau longkang, ia akan membahayakan alam sekitar</p>
+                <a class="btn btn-success" href="list_seller.html?Used Cooking Oil">Lihat Item</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Cans -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/cans.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Tin Aluminium</h3>
+                <h4>RM 0.70/KG</h4>
+                <p>Tin aluminium adalah logam yang tahan hancur dan boleh dikitar semula berkali-kali. Walaupun tin aluminium berada paling bawah dalam rantaian nilai kelompok logam buangan,  tetapi ia masih boleh dipungut dan dibawa ke tempat buangan secara pukal.</p>
+                <a class="btn btn-success" href="list_seller.html?Cans">Lihat Item</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Plastic -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/plastic.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Plastik</h3>
+                <h4>RM 0.50/KG</h4>
+                <p>Hampir semua plastik boleh dikitar semula, tetapi sejauh mana ia boleh boleh dikitar semula bergantung kepada faktor-faktor teknikal, ekonomi dan logistik. Sebagai sumber yang mempunyai kepelbagaian kegunaan, laluan penggunaan semula yang terbaik bagi bahan plastik adalah   dengan mengitarnya semula, sebaik-baiknya dengan mengubahnya kepada produk tertentu yang kemudiannya boleh dikitar semula berkali-kali</p>
+                <a class="btn btn-success" href="list_seller.html?Plastics">Lihat Item</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Paper -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/paper.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Kertas dan Buku</h3>
+                <h4>RM 0.35/KG</h4>
+                <p>Dalam dunia ekonomi hari ini, organisasi perniagaan mengitar semula kertas kerana ia dapat menjimatkan kos pelupusan bahan buangan. Kitaran semula juga dapat menyelamatkan bumi dan masyarakat setempat kerana ia membantu memulihara sumber alam yang berguna, mengurangkan pencemaran daripada pengeluaran bahan baru dan tidak kurang pentingnya menjana peluang pekerjaan.</p>
+                <a class="btn btn-success" href="list_seller.html?Paper">Lihat Item</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Glass-->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/glass.png" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Kaca</h3>
+                <h4>RM 0.50/KG</h4>
+                <p>Botol dan balang kaca
+                atau bahan-bahan diperbuat daripada kaca boleh dikitar 100% dan ia boleh dikitar berkali-kali tanpa hilang ketulinan atau kualitinya. Industri pembuat bekas kaca dan ‘fiberglass’ secara keseluruhannya memungut 3 juta tan bahan buangan kaca setiap tahun, yang kemudiannya dilebur dan dibentuk semula untuk kegunaan pengeluaran bekas kaca dan produk-produk ‘fiberglass’ yang baharu.</p>
+                <a class="btn btn-warning disabled">Akan Datang</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Food -->
+        <div class="row">
+            <div class="col-md-7">
+                    <img class="img-responsive" src="../images/food.jpg" alt="">
+            </div>
+            <div class="col-md-5">
+                <h3>Sisa Makanan</h3>
+                <h4>RM 0.20/KG</h4>
+                <p>Jumlah makanan yang kita buang yang begitu banyak merupakan pembuangan sumber yang merugikan. Bayangkan tentang banyaknya tenaga, air dan pembungkusan yang digunakan dalam pengeluaran makanan, pengangkutan dan penyimpanan. Kesemua ini terbuang begitu sahaja terutamanya makanan yang enak dan berharga</p>
+                <a class="btn btn-warning disabled">Akan Datang</i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="/my/about.html">Tentang Kami</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="/my/faq.html">Soalan Lazim</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="/my/contact.html">Hubungi Kami</a>
+                        </li>
+                    </ul>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="https://www.facebook.com/xused/" target="_blank"><i class="fa fa-facebook fa-fw"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/Xused2016" target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/xusedmy/" target="_blank"><i class="fa fa-instagram fa-fw"></i></a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">&copy; XUsed 2016. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="/js/firebase-setup.js"></script>
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-83944239-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+
+</html>
